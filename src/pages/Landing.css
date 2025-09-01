@@ -1,0 +1,235 @@
+/* src/pages/Landing.css - replace file contents with this */
+:root{
+  --bg-1: #07040a;
+  --bg-2: #0f0422;
+  --accent1: #9b5cff;
+  --accent2: #06b6d4;
+}
+
+/* core layout */
+.landing{
+  min-height:100vh;
+  width:100%;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  color:#fff;
+  background:
+    radial-gradient(1200px 600px at 10% 20%, rgba(124,58,237,0.12), transparent 8%),
+    radial-gradient(900px 400px at 90% 70%, rgba(6,182,212,0.06), transparent 6%),
+    linear-gradient(180deg, var(--bg-1), var(--bg-2));
+}
+
+/* small vignette overlay */
+.overlay { position:absolute; inset:0; pointer-events:none;
+  background: radial-gradient(60% 40% at 50% 35%, rgba(255,255,255,0.02), rgba(0,0,0,0.35));
+  z-index:2;
+}
+
+/* center hero */
+.hero { z-index:8; text-align:center; padding: 32px; max-width:1100px; width:100%; }
+
+/* big title: responsive with clamp */
+.landing-title {
+  margin:0 0 10px;
+  font-weight:900;
+  line-height:1;
+  letter-spacing:-0.02em;
+  font-size: clamp(34px, 7.5vw, 84px);
+  text-wrap: balance;
+  text-shadow: 0 18px 40px rgba(3,8,23,0.6);
+}
+
+.accent {
+  background: linear-gradient(90deg, #a78bfa, #7c3aed 30%, #4dd0e1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 8px 30px rgba(124,58,237,0.15);
+}
+
+.landing-sub {
+  margin: 8px auto 18px;
+  font-size: clamp(14px, 2.1vw, 20px);
+  color: rgba(255,255,255,0.9);
+  max-width:760px;
+}
+
+/* Start button wrapper with glowing animated border */
+.start-btn-wrapper {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px; /* Border thickness */
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    #a78bfa,
+    #7c3aed,
+    #06b6d4,
+    #a78bfa
+  );
+  background-size: 300% 300%;
+  animation: borderGlow 6s linear infinite;
+  box-shadow: 0 0 20px rgba(124,58,237,0.4);
+  z-index: 9;
+}
+
+/* Start button */
+.start-btn {
+  border: 0;
+  cursor: pointer;
+  padding: 14px 32px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 16px;
+  background: linear-gradient(90deg, #a78bfa, #7c3aed, #06b6d4);
+  color: #fff;
+  position: relative;
+  z-index: 9;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+  box-shadow: 0 0 15px rgba(155, 92, 255, 0.4),
+              0 0 30px rgba(124, 58, 237, 0.25);
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+/* Hover effect */
+.start-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 28px rgba(106,76,245,0.35);
+}
+
+.start-btn::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(155,92,255,0.7), rgba(124,58,237,0.6), rgba(6,182,212,0.6));
+  filter: blur(18px);
+  opacity: 0.7;
+  z-index: -1;
+  animation: auraGlow 4s linear infinite;
+}
+
+
+
+/* horizon container with arc + reflection */
+.horizon {
+  position:absolute;
+  left:0; right:0; bottom:6vh;
+  height:36vh;
+  z-index:3;
+  pointer-events:none;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+
+
+
+/* main arc (SVG) */
+.glowArc {
+  width:120%;
+  height:120%;
+  max-height:520px;
+  transform: translateY(28px);
+  filter: drop-shadow(0 30px 60px rgba(124,58,237,0.14));
+  mix-blend-mode: screen;
+  z-index:4;
+}
+
+/* reflection - flipped/blurred */
+.glowReflection {
+  position:absolute;
+  bottom:-4%;
+  width:120%;
+  height:50%;
+  left:-10%;
+  transform: scaleY(-1);
+  filter: blur(8px) saturate(1.1);
+  opacity:0.65;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.2), rgba(0,0,0,0));
+  z-index:2;
+}
+
+/* shimmer sweep overlay across horizon */
+.horizon::before{
+  content:"";
+  position:absolute;
+  left:-40%;
+  right:-40%;
+  bottom:38%;
+  height:80px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.00) 0%, rgba(255,255,255,0.06) 40%, rgba(255,255,255,0.00) 100%);
+  mix-blend-mode: screen;
+  filter: blur(14px) saturate(1.2);
+  transform: translateX(-30%) rotate(0.02deg);
+  animation: shimmer 3.6s linear infinite;
+  z-index:5;
+  pointer-events:none;
+}
+
+/* small floating particles */
+.particles .dot {
+  position:absolute;
+  border-radius:999px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(155,92,255,0.6));
+  opacity:0.12;
+  box-shadow: 0 0 12px rgba(147,90,255,0.25);
+  will-change: transform, opacity;
+  animation: floatY 6s ease-in-out infinite;
+}
+
+/* animations */
+@keyframes shimmer {
+  0% { transform: translateX(-40%); opacity:0.6; }
+  50% { transform: translateX(40%); opacity:1; }
+  100% { transform: translateX(120%); opacity:0; }
+}
+
+@keyframes floatY {
+  0% { transform: translateY(0) scale(1); opacity: 0.12; }
+  50% { transform: translateY(-18px) scale(1.12); opacity: 0.28; }
+  100% { transform: translateY(0) scale(1); opacity: 0.12; }
+}
+
+/* smaller screens */
+@media (max-width:720px) {
+  .horizon { height:30vh; bottom:10vh; }
+  .landing-title { font-size: clamp(26px, 10vw, 44px); }
+  .hero { padding: 18px; }
+}
+
+/* accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .horizon::before, .particles .dot, .arcPath { animation: none !important; transition: none !important; }
+}
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(155, 92, 255, 0.5),
+                0 0 35px rgba(124, 58, 237, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(155, 92, 255, 0.9),
+                0 0 60px rgba(6, 182, 212, 0.7);
+  }
+}
+
+@keyframes auraGlow {
+  0% { transform: rotate(0deg); opacity: 0.6; }
+  50% { opacity: 0.9; }
+  100% { transform: rotate(360deg); opacity: 0.6; }
+}
+
+/* Animated glowing border */
+@keyframes borderGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
