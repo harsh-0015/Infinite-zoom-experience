@@ -7,6 +7,7 @@ const InfiniteZoomExperience = () => {
   const sceneRef = useRef(null);
   const rendererRef = useRef(null);
   const cameraRef = useRef(null);
+  const [controlsOpen, setControlsOpen] = useState(false);
 
   const layersRef = useRef([]);
   const animationRef = useRef(null);
