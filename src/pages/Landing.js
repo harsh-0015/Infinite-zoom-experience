@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import "./Landing.css";
+import CardDemo from "../components/CardDemo";
 
 const PARTICLE_COUNT = 24;
 const particles = Array.from({ length: PARTICLE_COUNT }).map((_, i) => ({
@@ -92,6 +93,9 @@ export default function Landing() {
           Start
         </motion.button>
       </motion.div>
+
+      {/* Add card here */}
+<CardDemo />
 
       {/* HORIZON / ARC + REFLECTION */}
       <motion.div className="horizon" variants={horizonVariants}>

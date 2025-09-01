@@ -17,5 +17,19 @@ body {
 
 /* Respect user preference for reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* 👇 Add your fadeOut animation here */
+@keyframes fadeOut { 
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.2); }
+}
+
+.animate-fadeOut {
+  animation: fadeOut 0.8s ease-out forwards;
 }
